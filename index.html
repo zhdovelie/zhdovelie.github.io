@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-k8s初识" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/03/12/k8s%E5%88%9D%E8%AF%86/" class="article-date">
+  <time class="dt-published" datetime="2021-03-12T02:32:38.000Z" itemprop="datePublished">2021-03-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/03/12/k8s%E5%88%9D%E8%AF%86/">k8s初识</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="学习资料"><a href="#学习资料" class="headerlink" title="学习资料"></a>学习资料</h2><p>官方文档：<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/home/">https://kubernetes.io/docs/home/</a><br>网络资料：<a target="_blank" rel="noopener" href="https://jimmysong.io/kubernetes-handbook/">https://jimmysong.io/kubernetes-handbook/</a><br>阿里云与CNCF推出的培训视频：<a target="_blank" rel="noopener" href="https://edu.aliyun.com/roadmap/cloudnative?spm=5176.11399608.aliyun-edu-index-banner.1.1e814679N09aVb&from=groupmessage">https://edu.aliyun.com/roadmap/cloudnative?spm=5176.11399608.aliyun-edu-index-banner.1.1e814679N09aVb&amp;from=groupmessage</a><br>张磊的极客时间课程（收费）：<a target="_blank" rel="noopener" href="https://time.geekbang.org/column/intro/116">https://time.geekbang.org/column/intro/116</a></p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>Kubernetes是为生产环境而设计的容器调度管理系统，对于负载均衡、服务发现、高可用、滚动升级、自动伸缩等容器云平台的功能要求有原生支持 。<br>一个K8S集群是由分布式存储(etcd)、 Node节点和Master节点构成的。所有的 集群状态都保存在etcd中，Master节点上则运行集群的管理控制模块。<br>Node节点是真正运行应用容器的主机节点，在每个Node节点上都会运行一个Kubelet代理，控制该节点上的容 器、镜像和存储卷等。</p>
+<h2 id="Kubernetes架构"><a href="#Kubernetes架构" class="headerlink" title="Kubernetes架构"></a>Kubernetes架构</h2><p><img src="https://cdn.nlark.com/yuque/0/2020/png/488840/1583117418729-9c6fe3d0-aa73-45b3-b15e-ed5f204c2736.png#align=left&display=inline&height=1604&margin=%5Bobject%20Object%5D&name=image2019-9-29_19-0-49.png&originHeight=1604&originWidth=1950&size=279526&status=done&style=none&width=1950" alt="image2019-9-29_19-0-49.png"><br>基础组件功能</p>
+<ul>
+<li><p><strong>etcd</strong>保存了整个集群的状态；</p>
+</li>
+<li><p><strong>apiserver</strong>提供了资源操作的唯一入口，并提供认证、授权、访问控制、API注册和发现等机制；</p>
+</li>
+<li><p><strong>controller manager</strong>负责维护集群的状态，比如故障检测、自动扩展、滚动更新等；</p>
+</li>
+<li><p><strong>scheduler</strong>负责资源的调度，按照预定的调度策略将Pod调度到相应的机器上；</p>
+</li>
+<li><p><strong>kubelet</strong>负责维护容器的生命周期，同时也负责Volume（CSI）和网络（CNI）的管理；</p>
+</li>
+<li><p><strong>container runtime</strong>负责镜像管理以及Pod和容器的真正运行（CRI）；</p>
+</li>
+<li><p><strong>kube-proxy</strong>负责为Service提供cluster内部的服务发现和负载均衡；</p>
+<h2 id="K8S基本概念"><a href="#K8S基本概念" class="headerlink" title="K8S基本概念"></a>K8S基本概念</h2></li>
+<li><p><strong>Pod</strong>：Pod是kubernetes中你可以创建和部署的最小也是最简的单位。Pod代表着部署的一个单位：kubernetes中应用的一个实例，可能由一个或者多个容器组合在一起共享资源。</p>
+</li>
+<li><p><strong>Label</strong>：是一个 key=value的键值对，由用户指定，可以附加到 K8S资源之上。给某个资源定义一个标签，随后可以通过label进行查询和筛选 ，deployment与service之间通过label来关联。</p>
+</li>
+<li><p><strong>Namespace</strong>：通过将系统内部的对象分配到不同的Namespace中，这些namespace之间可以完全隔离，也可以通过某种方式，让一个namespace中的service可以访问到其他的namespace中的服务。</p>
+</li>
+<li><p><strong>Deployment</strong>：Deployment为Pod提供声明式更新。只需要在 Deployment 中描述您想要的目标状态是什么，Deployment controller 就会帮您将 Pod 和ReplicaSet 的实际状态改变到您的目标状态。可以滚动升级和回滚应用，扩容和缩容。</p>
+</li>
+<li><p><strong>Service</strong>：在K8s集群中，客户端需要访问的服务就是Service对象。每个Service会对应一个集群内部有效的虚拟IP，该虚拟IP通过IPVS规则，自动轮询访问后端Pod。在K8s集群中微服务的负载均衡是由Kube-proxy实现的。</p>
+</li>
+<li><p><strong>Volume</strong>：Volume是Pod中能够被多个容器访问的共享目录。</p>
+</li>
+<li><p><strong>DaemonSet</strong>： 确保全部（或者一些）Node 上运行一个 Pod 的副本。当有 Node 加入集群时，也会为他们新增一个 Pod 。当有 Node 从集群移除时，这些 Pod 也会被回收。删除DaemonSet 将会删除它创建的所有 Pod。</p>
+</li>
+<li><p><strong>ConfigMap</strong>：ConfigMap API给我们提供了向容器中注入配置信息的机制，ConfigMap可以被用来保存单个属性，也可以用来保存整个配置文件或者JSON二进制大对象。ConfigMap 可以更方便地处理不包含敏感信息的字符串。</p>
+</li>
+<li><p><strong>HPA：</strong>Horizontal Pod Autoscaling，顾名思义，使Pod水平自动缩放。</p>
+</li>
+</ul>
+<h2 id="K8S三种IP及端口"><a href="#K8S三种IP及端口" class="headerlink" title="K8S三种IP及端口"></a>K8S三种IP及端口</h2><blockquote>
+<p>在K8S集群内部，node ip 、pod ip、 service ip的通信机制是由k8s制定的路由规则，不是IP路由，即K8S的Pod<br>ip、 Service ip与外界网络不通。</p>
+</blockquote>
+<ul>
+<li><strong>Node IP</strong>: 节点设备的IP，如物理机，虚拟机等容器宿主的实际IP。</li>
+<li><strong>Node Port</strong>：服务对外（gateway）暴露的端口。</li>
+<li><strong>Pod IP</strong>: Pod 的IP地址，是根据网络组件的IP段进行分配的。</li>
+<li><strong>Pod Port</strong>：应用程序启动时监听的端口。</li>
+<li><strong>Service IP</strong>: Service的IP，是一个虚拟IP，仅作用于service对象，由k8s 管理和分配，需要结合service port才能使用，单独的IP没有通信功能， 集群外访问需要一些修改。</li>
+<li><strong>Service Port</strong>：服务内部（K8S内部）使用的端口。</li>
+</ul>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
+<li><p><strong>查看pod</strong></p>
+<ul>
+<li>kubectl get pod -n <namespace></li>
+<li>kubectl describe pod <pod> -n <namespace></li>
+</ul>
+</li>
+<li><p><strong>查看pod运行在哪个node节点</strong></p>
+<ul>
+<li>kubectl get pod -o wide -n <namespace></li>
+</ul>
+</li>
+<li><p><strong>查看pod有哪些label</strong></p>
+<ul>
+<li>kubectl get pod –show-labels -n <namespace></li>
+</ul>
+</li>
+<li><p><strong>查看node有哪些label</strong></p>
+<ul>
+<li>kubectl get nodes –show-labels</li>
+</ul>
+</li>
+<li><p><strong>查看service</strong></p>
+<ul>
+<li>kubectl get svc -n <namespace></li>
+</ul>
+</li>
+<li><p><strong>进入容器的交互式shell</strong></p>
+<ul>
+<li>kubectl exec <pod> -it - /bin/bash -n <namespace></li>
+</ul>
+</li>
+<li><p><strong>查看日志</strong></p>
+<ul>
+<li>kubectl logs <pod> -n <namespace></li>
+</ul>
+</li>
+<li><p><strong>查看后十行日志</strong></p>
+<ul>
+<li>kubectl logs <pod> –tail=10</li>
+</ul>
+</li>
+<li><p><strong>查看上次启动的日志</strong></p>
+<ul>
+<li>kubectl logs <pod> -p</li>
+</ul>
+</li>
+<li><p><strong>修改image版本</strong></p>
+<ul>
+<li>kubectl set image deployment nginx(deploy name)  nginx(container name)=nginx:1.9.1</li>
+</ul>
+</li>
+<li><p><strong>修改副本数</strong></p>
+<ul>
+<li>kubectl scale –replicas=3 deployment mysql</li>
+</ul>
+</li>
+<li><p>拷贝文件</p>
+<ul>
+<li>kubectl cp mysql-478535978-1dnm2:/tmp/message.log message.log</li>
+</ul>
+</li>
+<li><p><strong>查看yaml文件</strong></p>
+<ul>
+<li>cd /etc/kubernetes/apps/</li>
+</ul>
+</li>
+<li><p><strong>应用yaml文件</strong></p>
+<ul>
+<li>kubectl  apply -f xxx.yml<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="关键命令"><a href="#关键命令" class="headerlink" title="关键命令"></a>关键命令</h2></li>
+</ul>
+</li>
+<li><p><strong>驱逐node上所有pod</strong></p>
+<ul>
+<li>kubectl taint node <node_name> key1=value1:NoExecute</li>
+</ul>
+</li>
+<li><p><strong>驱逐node上pod，不驱逐ds：</strong></p>
+<ul>
+<li>kubectl drain <node_name> –delete-local-data –force –ignore-daemonsets</li>
+</ul>
+</li>
+<li><p><strong>恢复调度：</strong></p>
+<ul>
+<li>kubectl uncordon <node_name></li>
+</ul>
+</li>
+<li><p><strong>强制删除namespace</strong></p>
+<ul>
+<li>kubectl delete namespace NAMESPACENAME –force –grace-period=0</li>
+</ul>
+</li>
+<li><p><strong>命令行方式重启Deployment</strong></p>
+<ul>
+<li>kubectl patch deployment my-app –patch ‘{“spec”: {“template”: {“metadata”: {“annotations”: {“version/config”: “20180411” }}}}}’</li>
+</ul>
+</li>
+<li><p><strong>查看某个资源的字段意义</strong></p>
+<ul>
+<li>kubectl explain deployment.spec.template.spec.dnsPolicy</li>
+</ul>
+</li>
+<li><p><strong>查看资源类型及版本</strong></p>
+<ul>
+<li>kubectl api-resources</li>
+<li>kubectl api-versions</li>
+</ul>
+</li>
+<li><p><strong>创建一个测试的deployment</strong></p>
+<ul>
+<li>kubectl run curl -it –image=pstauffer/curl  </li>
+</ul>
+</li>
+<li><p><strong>创建一个nginx的deployment并暴露服务</strong></p>
+<ul>
+<li>kubectl run nginx –image=nginx –expose –port=80</li>
+</ul>
+</li>
+<li><p><strong>清理docker镜像</strong></p>
+<ul>
+<li>docker system prune -f 命令可以用于清理磁盘，删除关闭的容器、无用的数据卷和网络，以及 dangling 镜像(即无 tag 的镜像)</li>
+<li>docker system prune -af 命令清理得更加彻底，可以将没有容器使用 Docker 镜像都删掉。注意，这两个命令会把你暂时关闭的容器，以及暂时没有用到的 Docker 镜像都删掉<h1 id="-1"><a href="#-1" class="headerlink" title=""></a></h1><h2 id="K8S问题排查流程"><a href="#K8S问题排查流程" class="headerlink" title="K8S问题排查流程"></a>K8S问题排查流程</h2><h3 id="查看k8s内部问题"><a href="#查看k8s内部问题" class="headerlink" title="查看k8s内部问题"></a>查看k8s内部问题</h3></li>
+</ul>
+</li>
+<li><p>kubectl get pod –all-namespaces | grep -v Running</p>
+</li>
+<li><p>kubectl describe pod <error_pods> -n <namespace></p>
+</li>
+<li><p>kubectl logs <error_pods> -n <namespace></p>
+</li>
+<li><p>kubectl get event</p>
+<h3 id="查看k8s组件日志"><a href="#查看k8s组件日志" class="headerlink" title="查看k8s组件日志"></a>查看k8s组件日志</h3></li>
+<li><p>kubectl logs -n kube-system kube-apiserver-XXX</p>
+</li>
+<li><p>kubectl logs -n kube-system kube-scheduler-XXX</p>
+</li>
+<li><p>kubectl logs -n kube-system kube-controller-manager-XXX</p>
+</li>
+<li><p>journalctl -xeu etcd</p>
+</li>
+<li><p>journalctl -xeu kubelet</p>
+<h3 id="查看操作系统日志"><a href="#查看操作系统日志" class="headerlink" title="查看操作系统日志"></a>查看操作系统日志</h3></li>
+<li><p>less /var/log/message</p>
+</li>
+<li><p>less /var/log/dmesg</p>
+<h3 id="查看操作系统挂载情况"><a href="#查看操作系统挂载情况" class="headerlink" title="查看操作系统挂载情况"></a>查看操作系统挂载情况</h3></li>
+<li><p>cat /etc/fstab</p>
+</li>
+<li><p>lsblk</p>
+</li>
+<li><p>df -h | grep /dev</p>
+<h3 id="查看操作系统性能情况"><a href="#查看操作系统性能情况" class="headerlink" title="查看操作系统性能情况"></a>查看操作系统性能情况</h3></li>
+<li><p>htop</p>
+</li>
+<li><p>dstat 1</p>
+</li>
+<li><p>iotop -o</p>
+</li>
+<li><p>iostat -x 1</p>
+</li>
+<li><p>mpstat</p>
+</li>
+<li><p>vmstat</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/03/12/k8s%E5%88%9D%E8%AF%86/" data-id="ckm5oxv2p0001zkwjalobdcoj" data-title="k8s初识" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/k8s-%E8%BF%90%E7%BB%B4-%E5%AE%B9%E5%99%A8/" rel="tag">k8s,运维,容器</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/02/26/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2021-02-26T03:55:09.280Z" itemprop="datePublished">2021-02-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/02/26/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/02/26/hello-world/" data-id="ckm5oxv2a0000zkwj0pux8ovr" data-title="Hello World" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s-%E8%BF%90%E7%BB%B4-%E5%AE%B9%E5%99%A8/" rel="tag">k8s,运维,容器</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/k8s-%E8%BF%90%E7%BB%B4-%E5%AE%B9%E5%99%A8/" style="font-size: 10px;">k8s,运维,容器</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/12/k8s%E5%88%9D%E8%AF%86/">k8s初识</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/26/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
