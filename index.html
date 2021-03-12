@@ -95,8 +95,8 @@
       
         <h2 id="学习资料"><a href="#学习资料" class="headerlink" title="学习资料"></a>学习资料</h2><p>官方文档：<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/home/">https://kubernetes.io/docs/home/</a><br>网络资料：<a target="_blank" rel="noopener" href="https://jimmysong.io/kubernetes-handbook/">https://jimmysong.io/kubernetes-handbook/</a><br>阿里云与CNCF推出的培训视频：<a target="_blank" rel="noopener" href="https://edu.aliyun.com/roadmap/cloudnative?spm=5176.11399608.aliyun-edu-index-banner.1.1e814679N09aVb&from=groupmessage">https://edu.aliyun.com/roadmap/cloudnative?spm=5176.11399608.aliyun-edu-index-banner.1.1e814679N09aVb&amp;from=groupmessage</a><br>张磊的极客时间课程（收费）：<a target="_blank" rel="noopener" href="https://time.geekbang.org/column/intro/116">https://time.geekbang.org/column/intro/116</a></p>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>Kubernetes是为生产环境而设计的容器调度管理系统，对于负载均衡、服务发现、高可用、滚动升级、自动伸缩等容器云平台的功能要求有原生支持 。<br>一个K8S集群是由分布式存储(etcd)、 Node节点和Master节点构成的。所有的 集群状态都保存在etcd中，Master节点上则运行集群的管理控制模块。<br>Node节点是真正运行应用容器的主机节点，在每个Node节点上都会运行一个Kubelet代理，控制该节点上的容 器、镜像和存储卷等。</p>
-<h2 id="Kubernetes架构"><a href="#Kubernetes架构" class="headerlink" title="Kubernetes架构"></a>Kubernetes架构</h2><p><img src="images/1583117418729-9c6fe3d0-aa73-45b3-b15e-ed5f204c2736.png"><br>基础组件功能</p>
-<ul>
+<h2 id="Kubernetes架构"><a href="#Kubernetes架构" class="headerlink" title="Kubernetes架构"></a>Kubernetes架构</h2><p><img src="/.com//1583117418729-9c6fe3d0-aa73-45b3-b15e-ed5f204c2736.png" alt="1583117418729-9c6fe3d0-aa73-45b3-b15e-ed5f204c2736"></p>
+<h2 id="基础组件功能"><a href="#基础组件功能" class="headerlink" title="基础组件功能"></a>基础组件功能</h2><ul>
 <li><p><strong>etcd</strong>保存了整个集群的状态；</p>
 </li>
 <li><p><strong>apiserver</strong>提供了资源操作的唯一入口，并提供认证、授权、访问控制、API注册和发现等机制；</p>
@@ -144,18 +144,18 @@
 <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
 <li><p><strong>查看pod</strong></p>
 <ul>
-<li>kubectl get pod -n <namespace></li>
-<li>kubectl describe pod <pod> -n <namespace></li>
+<li>kubectl get pod -n <namespace></namespace></li>
+<li>kubectl describe pod <pod> -n <namespace></namespace></pod></li>
 </ul>
 </li>
 <li><p><strong>查看pod运行在哪个node节点</strong></p>
 <ul>
-<li>kubectl get pod -o wide -n <namespace></li>
+<li>kubectl get pod -o wide -n <namespace></namespace></li>
 </ul>
 </li>
 <li><p><strong>查看pod有哪些label</strong></p>
 <ul>
-<li>kubectl get pod –show-labels -n <namespace></li>
+<li>kubectl get pod –show-labels -n <namespace></namespace></li>
 </ul>
 </li>
 <li><p><strong>查看node有哪些label</strong></p>
@@ -165,27 +165,27 @@
 </li>
 <li><p><strong>查看service</strong></p>
 <ul>
-<li>kubectl get svc -n <namespace></li>
+<li>kubectl get svc -n <namespace></namespace></li>
 </ul>
 </li>
 <li><p><strong>进入容器的交互式shell</strong></p>
 <ul>
-<li>kubectl exec <pod> -it - /bin/bash -n <namespace></li>
+<li>kubectl exec <pod> -it - /bin/bash -n <namespace></namespace></pod></li>
 </ul>
 </li>
 <li><p><strong>查看日志</strong></p>
 <ul>
-<li>kubectl logs <pod> -n <namespace></li>
+<li>kubectl logs <pod> -n <namespace></namespace></pod></li>
 </ul>
 </li>
 <li><p><strong>查看后十行日志</strong></p>
 <ul>
-<li>kubectl logs <pod> –tail=10</li>
+<li>kubectl logs <pod> –tail=10</pod></li>
 </ul>
 </li>
 <li><p><strong>查看上次启动的日志</strong></p>
 <ul>
-<li>kubectl logs <pod> -p</li>
+<li>kubectl logs <pod> -p</pod></li>
 </ul>
 </li>
 <li><p><strong>修改image版本</strong></p>
@@ -210,22 +210,22 @@
 </li>
 <li><p><strong>应用yaml文件</strong></p>
 <ul>
-<li>kubectl  apply -f xxx.yml<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="关键命令"><a href="#关键命令" class="headerlink" title="关键命令"></a>关键命令</h2></li>
+<li>kubectl  apply -f xxx.yml<h2 id><a href="#" class="headerlink" title></a></h2><h2 id="关键命令"><a href="#关键命令" class="headerlink" title="关键命令"></a>关键命令</h2></li>
 </ul>
 </li>
 <li><p><strong>驱逐node上所有pod</strong></p>
 <ul>
-<li>kubectl taint node <node_name> key1=value1:NoExecute</li>
+<li>kubectl taint node <node_name> key1=value1:NoExecute</node_name></li>
 </ul>
 </li>
 <li><p><strong>驱逐node上pod，不驱逐ds：</strong></p>
 <ul>
-<li>kubectl drain <node_name> –delete-local-data –force –ignore-daemonsets</li>
+<li>kubectl drain <node_name> –delete-local-data –force –ignore-daemonsets</node_name></li>
 </ul>
 </li>
 <li><p><strong>恢复调度：</strong></p>
 <ul>
-<li>kubectl uncordon <node_name></li>
+<li>kubectl uncordon <node_name></node_name></li>
 </ul>
 </li>
 <li><p><strong>强制删除namespace</strong></p>
@@ -262,14 +262,14 @@
 <li><p><strong>清理docker镜像</strong></p>
 <ul>
 <li>docker system prune -f 命令可以用于清理磁盘，删除关闭的容器、无用的数据卷和网络，以及 dangling 镜像(即无 tag 的镜像)</li>
-<li>docker system prune -af 命令清理得更加彻底，可以将没有容器使用 Docker 镜像都删掉。注意，这两个命令会把你暂时关闭的容器，以及暂时没有用到的 Docker 镜像都删掉<h1 id="-1"><a href="#-1" class="headerlink" title=""></a></h1><h2 id="K8S问题排查流程"><a href="#K8S问题排查流程" class="headerlink" title="K8S问题排查流程"></a>K8S问题排查流程</h2><h3 id="查看k8s内部问题"><a href="#查看k8s内部问题" class="headerlink" title="查看k8s内部问题"></a>查看k8s内部问题</h3></li>
+<li>docker system prune -af 命令清理得更加彻底，可以将没有容器使用 Docker 镜像都删掉。注意，这两个命令会把你暂时关闭的容器，以及暂时没有用到的 Docker 镜像都删掉<h1 id="-1"><a href="#-1" class="headerlink" title></a></h1><h2 id="K8S问题排查流程"><a href="#K8S问题排查流程" class="headerlink" title="K8S问题排查流程"></a>K8S问题排查流程</h2><h3 id="查看k8s内部问题"><a href="#查看k8s内部问题" class="headerlink" title="查看k8s内部问题"></a>查看k8s内部问题</h3></li>
 </ul>
 </li>
 <li><p>kubectl get pod –all-namespaces | grep -v Running</p>
 </li>
-<li><p>kubectl describe pod <error_pods> -n <namespace></p>
+<li><p>kubectl describe pod <error_pods> -n <namespace></namespace></error_pods></p>
 </li>
-<li><p>kubectl logs <error_pods> -n <namespace></p>
+<li><p>kubectl logs <error_pods> -n <namespace></namespace></error_pods></p>
 </li>
 <li><p>kubectl get event</p>
 <h3 id="查看k8s组件日志"><a href="#查看k8s组件日志" class="headerlink" title="查看k8s组件日志"></a>查看k8s组件日志</h3></li>
