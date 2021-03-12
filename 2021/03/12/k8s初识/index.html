@@ -13,13 +13,13 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="学习资料官方文档：https:&#x2F;&#x2F;kubernetes.io&#x2F;docs&#x2F;home&#x2F;网络资料：https:&#x2F;&#x2F;jimmysong.io&#x2F;kubernetes-handbook&#x2F;阿里云与CNCF推出的培训视频：https:&#x2F;&#x2F;edu.aliyun.com&#x2F;roadmap&#x2F;cloudnative?spm&#x3D;5176.11399608.aliyun-edu-index-banner.1.1e814679N0">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/488840/1583117418729-9c6fe3d0-aa73-45b3-b15e-ed5f204c2736.png#align=left&display=inline&height=1604&margin=%5Bobject%20Object%5D&name=image2019-9-29_19-0-49.png&originHeight=1604&originWidth=1950&size=279526&status=done&style=none&width=1950">
+<meta property="og:image" content="http://example.com/2021/03/12/k8s%E5%88%9D%E8%AF%86/images/1583117418729-9c6fe3d0-aa73-45b3-b15e-ed5f204c2736.png">
 <meta property="article:published_time" content="2021-03-12T02:32:38.000Z">
-<meta property="article:modified_time" content="2021-03-12T02:36:55.093Z">
+<meta property="article:modified_time" content="2021-03-12T02:47:55.749Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="k8s,运维,容器">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2020/png/488840/1583117418729-9c6fe3d0-aa73-45b3-b15e-ed5f204c2736.png#align=left&display=inline&height=1604&margin=%5Bobject%20Object%5D&name=image2019-9-29_19-0-49.png&originHeight=1604&originWidth=1950&size=279526&status=done&style=none&width=1950">
+<meta name="twitter:image" content="http://example.com/2021/03/12/k8s%E5%88%9D%E8%AF%86/images/1583117418729-9c6fe3d0-aa73-45b3-b15e-ed5f204c2736.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -100,7 +100,7 @@
       
         <h2 id="学习资料"><a href="#学习资料" class="headerlink" title="学习资料"></a>学习资料</h2><p>官方文档：<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/home/">https://kubernetes.io/docs/home/</a><br>网络资料：<a target="_blank" rel="noopener" href="https://jimmysong.io/kubernetes-handbook/">https://jimmysong.io/kubernetes-handbook/</a><br>阿里云与CNCF推出的培训视频：<a target="_blank" rel="noopener" href="https://edu.aliyun.com/roadmap/cloudnative?spm=5176.11399608.aliyun-edu-index-banner.1.1e814679N09aVb&from=groupmessage">https://edu.aliyun.com/roadmap/cloudnative?spm=5176.11399608.aliyun-edu-index-banner.1.1e814679N09aVb&amp;from=groupmessage</a><br>张磊的极客时间课程（收费）：<a target="_blank" rel="noopener" href="https://time.geekbang.org/column/intro/116">https://time.geekbang.org/column/intro/116</a></p>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>Kubernetes是为生产环境而设计的容器调度管理系统，对于负载均衡、服务发现、高可用、滚动升级、自动伸缩等容器云平台的功能要求有原生支持 。<br>一个K8S集群是由分布式存储(etcd)、 Node节点和Master节点构成的。所有的 集群状态都保存在etcd中，Master节点上则运行集群的管理控制模块。<br>Node节点是真正运行应用容器的主机节点，在每个Node节点上都会运行一个Kubelet代理，控制该节点上的容 器、镜像和存储卷等。</p>
-<h2 id="Kubernetes架构"><a href="#Kubernetes架构" class="headerlink" title="Kubernetes架构"></a>Kubernetes架构</h2><p><img src="https://cdn.nlark.com/yuque/0/2020/png/488840/1583117418729-9c6fe3d0-aa73-45b3-b15e-ed5f204c2736.png#align=left&display=inline&height=1604&margin=%5Bobject%20Object%5D&name=image2019-9-29_19-0-49.png&originHeight=1604&originWidth=1950&size=279526&status=done&style=none&width=1950" alt="image2019-9-29_19-0-49.png"><br>基础组件功能</p>
+<h2 id="Kubernetes架构"><a href="#Kubernetes架构" class="headerlink" title="Kubernetes架构"></a>Kubernetes架构</h2><p><img src="images/1583117418729-9c6fe3d0-aa73-45b3-b15e-ed5f204c2736.png"><br>基础组件功能</p>
 <ul>
 <li><p><strong>etcd</strong>保存了整个集群的状态；</p>
 </li>
